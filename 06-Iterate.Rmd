@@ -30,7 +30,7 @@ mod <- lm(price ~ carat + cut + color + clarity, data = diamonds)
 View(mod)
 ```
 
-## Quiz
+## Consider
 
 What's the difference between a list and an **atomic** vector?
 

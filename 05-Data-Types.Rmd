@@ -1,6 +1,8 @@
 ---
 title: "Data Types"
 output: html_notebook
+editor_options: 
+  chunk_output_type: inline
 ---
 
 <!-- This file by Charlotte Wickham is licensed under a Creative Commons Attribution 4.0 International License, adapted from the orignal work at https://github.com/rstudio/master-the-tidyverse by RStudio. -->
@@ -8,13 +10,15 @@ output: html_notebook
 ```{r setup}
 library(tidyverse)
 library(lubridate)
+library(fivethirtyeight)
+```
 
+```{r}
 # Example of a factor
 eyes <- factor(x = c("blue", "green", "green"), 
                levels = c("blue", "brown", "green"))
 
 # An example for times/dates
-library(fivethirtyeight)
 births <- US_births_1994_2003 %>%
   select(date, births)
 ```
