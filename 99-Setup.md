@@ -6,7 +6,7 @@ During the workshop you'll do your work on [rstudio.cloud](https://rstudio.cloud
 
 To get set up follow these steps:
 
-1.  Visit the project at https://rstudio.cloud/project/10871
+1.  Visit the project at https://rstudio.cloud/project/163983
 
 2.  Log in using google, github, shinyapps.io or "Sign Up".
 
@@ -16,11 +16,7 @@ To get set up follow these steps:
 
 ![](resources/02-setup-temp-project.png)
 
-4. Now the "Data Science in the tidyverse" project will open again, but this time it is your own copy.  Navigate to the project folder:
-
-![](resources/03-setup-navigate-to-project.png)
-
-5. Inside the project folder navigate to the "data-science-in-the-tidyverse.Rproj" file and click it.
+4. Now the "Data Science in the tidyverse" project will open again, but this time it is your own copy.  Navigate to  the "data-science-in-the-tidyverse.Rproj" file and click it.
 
 ![](resources/04-setup-rproj-file.png)
 

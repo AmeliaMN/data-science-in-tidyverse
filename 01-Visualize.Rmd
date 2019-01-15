@@ -1,29 +1,47 @@
 ---
-title: "Visualize Data"
+title: "Visualization"
 output: html_notebook
+editor_options: 
+  chunk_output_type: inline
 ---
 
-<!-- This file by Charlotte Wickham is licensed under a Creative Commons Attribution 4.0 International License, adapted from the orignal work at https://github.com/rstudio/master-the-tidyverse by RStudio. -->
+<!-- This file by Amelia McNamara is licensed under a Creative Commons Attribution 4.0 International License, adapted from the orignal work at https://github.com/rstudio/master-the-tidyverse by RStudio. -->
+
+## Setup
+
+The first chunk in an R Notebook is usually titled "setup," and by convention includes the R packages you want to load. Remember, in order to use an R package you have to run some `library()` code every session. Execute these lines of code to load the packages. 
 
 ```{r setup}
-library(tidyverse)
+library(ggplot2)
+library(fivethirtyeight)
 ```
 
+## Bechdel test data
+
+We're going to start by playing with data collected by the website FiveThirtyEight on movies and [the Bechdel test](https://en.wikipedia.org/wiki/Bechdel_test). 
+
+To begin, let's just preview our data. There are a couple ways to do that. One is just to type the name of the data and execute it like a piece of code. 
 
 ```{r}
-mpg
+bechdel
 ```
 
-## Quiz
+Notice that you can page through to see more of the dataset. 
 
-What relationship do you expect to see between engine size (displ) and highway fuel efficiency (hwy)?
+Sometimes, people prefer to see their data in a more spreadsheet-like format, and RStudio provides a way to do that. Go to the Console and type `View(bechdel)` to see the data preview. 
+
+(An aside-- `View` is a special function. Since it makes something happen in the RStudio interface, it doesn't work properly in R Notebooks. Most R functions have names that start with lowercase letters, so the uppercase "V" is there to remind you of its special status.)
+
+
+
+## Consider
+What relationship do you expect to see between movie budget (budget) and domestic gross(domgross)?
 
 ## Your Turn 1
 
 Run the code on the slide to make a graph. Pay strict attention to spelling, capitalization, and parentheses!
 
 ```{r}
-
 
 ```
 
@@ -32,8 +50,15 @@ Run the code on the slide to make a graph. Pay strict attention to spelling, cap
 Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
 
 ```{r}
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy))
+ggplot(data = bechdel) +
+  geom_point(mapping = aes(x = budget, y = domgross))
+```
+
+## Set vs map
+
+```{r}
+ggplot(bechdel) + 
+    geom_point(mapping = aes(x = budget, y = domgross), color="blue")
 ```
 
 ## Your Turn 3
@@ -41,58 +66,78 @@ ggplot(data = mpg) +
 Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try your best guess.
 
 ```{r}
-ggplot(data = mpg) +
-  geom_point(mapping = aes(x = class, y = hwy))
+ggplot(data = bechdel) + geom_point(aes(x = clean_test, y = budget))
 ```
 
 ## Your Turn 4
 
-Make a histogram of the `hwy` variable from `mpg`.
+Make a histogram of the `budget` variable from `bechdel`.
 
 ```{r}
-ggplot(data = mpg) 
 
 ```
 
 ## Your Turn 5
-
-Make a density plot of `hwy` colored by `class`.
+Try to find a better `binwidth` for `budget`.
 
 ```{r}
-ggplot(data = mpg) 
 
 ```
 
 ## Your Turn 6
 
-Make a bar chart `class` colored by `class`.
+Make a density plot of `budget` colored by `clean_test`.
 
 ```{r}
-ggplot(data = mpg) 
 
 ```
 
 ## Your Turn 7
 
+Make a density plot of `clean_test` colored by `clean_test`.
+
+```{r}
+
+```
+
+
+## Your Turn 8
+
 Predict what this code will do. Then run it.
 
 ```{r}
-ggplot(mpg) + 
-  geom_point(aes(displ, hwy)) +
-  geom_smooth(aes(displ, hwy))
+ggplot(data = bechdel) +
+  geom_point(mapping = aes(x = budget, y = domgross)) +
+  geom_smooth(mapping = aes(x = budget, y = domgross))
 ```
 
-## Your Turn 8
+## global vs local
+
+```{r}
+ggplot(data = bechdel, mapping = aes(x = budget, y = domgross)) +
+  geom_point(mapping = aes(color = clean_test)) +
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = bechdel, mapping = aes(x = budget, y = domgross)) +
+  geom_point(mapping = aes(color = clean_test)) +
+  geom_smooth(data = filter(bechdel, clean_test == "ok"))
+```
+
+
+
+## Your Turn 
 
 What does `getwd()` return?
 
 ```{r}
-getwd()
+
 ```
 
 ## Your Turn 9
 
-Save the last plot and then locate it in the files pane.
+Save the last plot and then locate it in the files pane. If you run your `ggsave()` code inside this notebook, the image will be saved in the same directory as your .Rmd file (likely, project -> code), but if you run `ggsave()` in the Console it will be in your working directory. 
 
 ```{r}
 
@@ -104,7 +149,7 @@ Save the last plot and then locate it in the files pane.
 
 You can use this code template to make thousands of graphs with **ggplot2**.
 
-```{r, eval = FALSE}
+```{r eval = FALSE}
 ggplot(data = <DATA>) +
   <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 ```
