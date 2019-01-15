@@ -1,6 +1,8 @@
 ---
 title: "Organize with List Columns"
 output: html_notebook
+editor_options: 
+  chunk_output_type: inline
 ---
 
 <!-- This file by Charlotte Wickham is licensed under a Creative Commons Attribution 4.0 International License, adapted from the orignal work at https://github.com/rstudio/master-the-tidyverse by RStudio. -->
@@ -28,11 +30,11 @@ gapminder
 
 ```
 
-## Quiz
+## Consider
 
 How is a data frame/tibble similar to a list?
 
-## Quiz
+## Consider
 
 If one of the elements of a list can be another list,
 can one of the columns of a data frame be another list?
