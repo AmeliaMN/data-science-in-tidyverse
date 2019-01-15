@@ -10,7 +10,9 @@ You'll be using RStudio Cloud, so (all going well) on the day of the workshop al
 
 However, as a backup (e.g. in case of wifi issues) it would be best if you also have R and RStudio installed locally, along with the following packages:
 
-    install.packages(c("babynames", "fivethirtyeight", "formatR", "gapminder", "hexbin", "mgcv", "maps", "mapproj", "nycflights13", "rmarkdown", "skimr", "tidyverse", "viridis")) 
+    install.packages(c("babynames", "fivethirtyeight", "formatR", "gapminder", 
+    "hexbin", "mgcv", "maps", "mapproj", "nycflights13", "rmarkdown", 
+    "skimr", "tidyverse", "viridis")) 
 
 Don't forget to bring your power cord!
 
@@ -25,4 +27,4 @@ Amelia McNamara
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">*Data Science in the tidyverse*</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/AmeliaMN/" property="cc:attributionName" rel="cc:attributionURL">Amelia McNamara/a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.  Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/rstudio-education/master-the-tidyverse" rel="dct:source">https://github.com/rstudio-education/master-the-tidyverse</a>, [https://github.com/cwickham/data-science-in-tidyverse](https://github.com/cwickham/data-science-in-tidyverse), and [https://github.com/AmeliaMN/IntroToR/](https://github.com/AmeliaMN/IntroToR/)
+<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">*Data Science in the tidyverse*</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/AmeliaMN/" property="cc:attributionName" rel="cc:attributionURL">Amelia McNamara</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.  Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/rstudio-education/master-the-tidyverse" rel="dct:source">https://github.com/rstudio-education/master-the-tidyverse</a>, [https://github.com/cwickham/data-science-in-tidyverse](https://github.com/cwickham/data-science-in-tidyverse), and [https://github.com/AmeliaMN/IntroToR/](https://github.com/AmeliaMN/IntroToR/)
