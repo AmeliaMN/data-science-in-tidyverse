@@ -94,7 +94,7 @@ Make a density plot of `budget` colored by `clean_test`.
 
 ## Your Turn 7
 
-Make a density plot of `clean_test` colored by `clean_test`.
+Make a barchart of `clean_test` colored by `clean_test`.
 
 ```{r}
 
