@@ -1,164 +1,105 @@
 ---
 title: "Data Types"
 output: html_notebook
-editor_options: 
-  chunk_output_type: inline
 ---
-
-<!-- This file by Charlotte Wickham is licensed under a Creative Commons Attribution 4.0 International License, adapted from the orignal work at https://github.com/rstudio/master-the-tidyverse by RStudio. -->
 
 ```{r setup}
 library(tidyverse)
+library(babynames)
+library(nycflights13)
+library(stringr)
+library(forcats)
 library(lubridate)
-library(fivethirtyeight)
-```
-
-```{r}
-# Example of a factor
-eyes <- factor(x = c("blue", "green", "green"), 
-               levels = c("blue", "brown", "green"))
-
-# An example for times/dates
-births <- US_births_1994_2003 %>%
-  select(date, births)
-```
-
-## Warm-up / Review
-
-Using the data `gss_cat`, find the average hours of tv watched (`tvhours`) for each category of marital status (`marital`).
-
-```{r}
-gss_cat
+library(hms)
 ```
 
 ## Your Turn 1
 
-What kind of object is the `marital` variable?  
+Use `flights` to create `delayed`, the variable that displays whether a flight was delayed (`arr_delay > 0`).
+
+Then, remove all rows that contain an NA in `delayed`. 
+
+Finally, create a summary table that shows:
+
+1. How many flights were delayed  
+2. What proportion of flights were delayed
 
 ```{r}
-gss_cat
+
 ```
 
-Brainstorm with your neighbor, all the things you know about that kind of object.
-
-# Factors
 
 ## Your Turn 2
 
-Fix your summary of average hours of tv watched (`tvhours`) by marital status (`marital`), to drop missing values in `tvhours`, then create a plot to examine the results.
+In your group, fill in the blanks to:
+
+1. Isolate the last letter of every name and create a logical variable that displays whether the last letter is one of "a", "e", "i", "o", "u", or "y".  
+2. Use a weighted mean to calculate the proportion of children whose name ends in a vowel (by `year` and `sex`)   
+3. and then display the results as a line plot.
 
 ```{r}
-gss_cat %>%
-  group_by(marital) %>% 
-  summarise(avg_tvhours = mean(tvhours)) 
+babynames %>%
+  _______(last = _________, 
+          vowel = __________) %>%
+  group_by(__________) %>%
+  _________(p_vowel = weighted.mean(vowel, n)) %>%
+  _________ +
+  __________
 ```
 
 ## Your Turn 3
 
-Fill in the blanks (`   `) to explore the average hours of tv watched by religion.
-
-```{r, error = TRUE}
-gss_cat %>%
-  drop_na(    ) %>%
-  group_by(    ) %>%
-  summarise(    ) %>%
-  ggplot() +
-    geom_point(mapping = aes(x =     , y =    ))
-```
-
-## Quiz 
-
-Why is this plot not very useful?
+Repeat the previous exercise, some of whose code is below, to make a sensible graph of average TV consumption by marital status.
 
 ```{r}
 gss_cat %>%
-  drop_na(tvhours) %>%
-  group_by(denom) %>%
-  summarise(avg_tvhours = mean(tvhours)) %>%
+  drop_na(________) %>%
+  group_by(________) %>%
+  summarise(_________________) %>%
   ggplot() +
-    geom_point(mapping = aes(x = avg_tvhours,
-      y = fct_reorder(denom, avg_tvhours)))
+    geom_point(mapping = aes(x = _______, y = _________________________))
 ```
 
 ## Your Turn 4
 
-Edit the code to also relabel some other Baptist denominations:
-
-* "Baptist-dk which" -> "Baptist - Don't Know"    
-* "Other baptists" -> "Baptist = Other"
+Do you think liberals or conservatives watch more TV?
+Compute average tv hours by party ID an then plot the results.
 
 ```{r}
-gss_cat %>%
-  mutate(denom = fct_recode(denom,
-    "Baptist - Southern" = "Southern baptist")
-  ) %>%
-  pull(denom) %>%
-  levels()
+
 ```
 
 ## Your Turn 5
 
-What does the function `detect_denom()` do?
+What is the best time of day to fly?
+
+Use the `hour` and `minute` variables in `flights` to compute the time of day for each flight as an hms. Then use a smooth line to plot the relationship between time of day and `arr_delay`.
 
 ```{r}
-detect_denom <- function(x){
-  case_when(
-    str_detect(x, "[Bb]ap") ~ "Baptist", 
-    str_detect(x, "[Pp]res") ~ "Presbyterian",
-    str_detect(x, "[Ll]uth") ~ "Lutheran",
-    str_detect(x, "[Mm]eth") ~ "Methodist",
-    TRUE ~ x
-  )
-}
 
-gss_cat %>% pull(denom) %>% levels() %>% detect_denom()
 ```
 
-# Strings
-
-With your neighbor, predict what these might return:
-
-```{r}
-strings <- c("Apple", "Pineapple", "Orange")
-
-str_detect(strings, pattern = "pp")
-str_detect(strings, pattern =  "apple")
-str_detect(strings, pattern = "[Aa]pple")
-```
-
-Then run them!
-
-# Times and Dates
-
-## Your Turn 7
-
-For each of the following formats (of the same date), pick the right `ymd()` function to parse them:
-
-```{r}
-"2018 Feb 01"
-"2-1-18"
-"01/02/2018"
-```
-
-## Your Turn 8
+## Your Turn 6
 
 Fill in the blanks to:
 
-* Extract the month from date. 
-* Extract the year from date.
-* Find the total births for each year/month.
-* Plot the results as a line chart.
+Extract the day of the week of each flight (as a full name) from `time_hour`. 
 
-```{r, error = TRUE}
-births %>%
-  mutate(year = ___,
-    month = ___) %>%
-  group_by(___, ___) %>%
-  summarise(total_births = ___) %>%
-  ggplot() + 
-    geom_line(aes(x = month, y = total_births, group = year))
+Calculate the average `arr_delay` by day of the week.
+
+Plot the results as a column chart (bar chart) with `geom_col()`.
+
+```{r}
+flights %>% 
+  mutate(weekday = _______________________________) %>% 
+  __________________ %>% 
+  drop_na(arr_delay) %>% 
+  summarise(avg_delay = _______________) %>% 
+  ggplot() +
+    ___________(mapping = aes(x = weekday, y = avg_delay))
 ```
 
+***
 
 # Take Aways
 
@@ -166,7 +107,8 @@ Dplyr gives you three _general_ functions for manipulating data: `mutate()`, `su
 
 Package   | Data Type
 --------- | --------
-forcats   | factors
 stringr   | strings
+forcats   | factors
 hms       | times
 lubridate | dates and times
+
